@@ -1,5 +1,4 @@
 import AboutMe as AM
-import NoteMainApp as Main
 import NoteWidgets as NW
 import tkinter as tk
 
@@ -7,15 +6,15 @@ import tkinter as tk
 class TopMenu(NW.FrontFrames):
     """Class creating the top menu bar. Only few of the menu options are actually executing a command"""
     def __init__(self, master):
-        super().__init__(master)
+        import NoteMainApp as Main
         # *******Top-Navigation Bar (tnb)**********
-        tnb = tk.Menu(master)
-        Main.root.config(menu=tnb)
+        self.tnb = tk.Menu(master)
+        Main.root.config(menu=self.tnb)
 
         # *******tnb_file*******
 
-        tnb_file = tk.Menu(tnb, tearoff=0)
-        tnb.add_cascade(label="File", menu=tnb_file)
+        tnb_file = tk.Menu(self.tnb, tearoff=0)
+        self.tnb.add_cascade(label="File", menu=tnb_file)
         tnb_file.add_command(label="New Project")
         tnb_file.add_command(label="New ...")
         tnb_file.add_command(label="Open ...", command=self.file_open)
@@ -26,8 +25,8 @@ class TopMenu(NW.FrontFrames):
 
         # ********tnb_edit********
 
-        tnb_edit = tk.Menu(tnb, tearoff=0)
-        tnb.add_cascade(label="Edit", menu=tnb_edit)
+        tnb_edit = tk.Menu(self.tnb, tearoff=0)
+        self.tnb.add_cascade(label="Edit", menu=tnb_edit)
         tnb_edit.add_command(label="Undo Typing")
         tnb_edit.add_separator()
         tnb_edit.add_command(label="Cut")
@@ -37,8 +36,8 @@ class TopMenu(NW.FrontFrames):
 
         # *******tnb_view********
 
-        tnb_view = tk.Menu(tnb, tearoff=0)
-        tnb.add_cascade(label="View", menu=tnb_view)
+        tnb_view = tk.Menu(self.tnb, tearoff=0)
+        self.tnb.add_cascade(label="View", menu=tnb_view)
         tnb_view.add_command(label="Recent files")
         tnb_view.add_command(label="Recently changed file")
         tnb_view.add_command(label="Recent Changes")
@@ -50,8 +49,8 @@ class TopMenu(NW.FrontFrames):
 
         # *******tnb_help********
 
-        tnb_help = tk.Menu(tnb, tearoff=0)
-        tnb.add_cascade(label="help", menu=tnb_help)
+        tnb_help = tk.Menu(self.tnb, tearoff=0)
+        self.tnb.add_cascade(label="help", menu=tnb_help)
         tnb_help.add_command(label="Find Action")
         tnb_help.add_command(label="help")
         tnb_help.add_command(label="Getting Started")
